@@ -10,22 +10,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.formacionbdi.springboot.app.commons.models.entity.Producto;
+import com.formacionbdi.springboot.app.commons.models.entity.CatalogsNIAO;
 
 @FeignClient(name = "servicio-productos")
 public interface ProductoClienteRest {
 	
 	@GetMapping("/listar")
-	public List<Producto> listar();
+	public List<CatalogsNIAO> listar();
 	
 	@GetMapping("/ver/{id}")
-	public Producto detalle(@PathVariable Long id);
+	public CatalogsNIAO detalle(@PathVariable Long id);
 	
 	@PostMapping("/crear")
-	public Producto crear(@RequestBody Producto producto);
+	public CatalogsNIAO crear(@RequestBody CatalogsNIAO producto);
 	
 	@PutMapping("/editar/{id}")
-	public Producto update(@RequestBody Producto producto, @PathVariable Long id);
+	public CatalogsNIAO update(@RequestBody CatalogsNIAO producto, @PathVariable Long id);
 	
 	@DeleteMapping("/eliminar/{id}")
 	public void eliminar(@PathVariable Long id);

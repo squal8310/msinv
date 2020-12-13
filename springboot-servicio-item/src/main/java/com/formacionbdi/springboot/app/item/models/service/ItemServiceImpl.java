@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.formacionbdi.springboot.app.commons.models.entity.Producto;
+import com.formacionbdi.springboot.app.commons.models.entity.CatalogsNIAO;
 import com.formacionbdi.springboot.app.item.models.Item;
 
 @Service("serviceRestTemplate")
@@ -24,7 +24,7 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Override
 	public List<Item> findAll() {
-		List<Producto> productos = Arrays.asList(clienteRest.getForObject("http://servicio-productos/listar", Producto[].class));
+		List<CatalogsNIAO> productos = Arrays.asList(clienteRest.getForObject("http://servicio-productos/listar", CatalogsNIAO[].class));
 		
 		return productos.stream().map(p -> new Item(p, 1)).collect(Collectors.toList());
 	}
@@ -33,27 +33,27 @@ public class ItemServiceImpl implements ItemService {
 	public Item findById(Long id, Integer cantidad) {
 		Map<String, String> pathVariables = new HashMap<String, String>();
 		pathVariables.put("id", id.toString());
-		Producto producto = clienteRest.getForObject("http://servicio-productos/ver/{id}", Producto.class, pathVariables);
+		CatalogsNIAO producto = clienteRest.getForObject("http://servicio-productos/ver/{id}", CatalogsNIAO.class, pathVariables);
 		return new Item(producto, cantidad);
 	}
 
 	@Override
-	public Producto save(Producto producto) {
-		HttpEntity<Producto> body = new HttpEntity<Producto>(producto);
+	public CatalogsNIAO save(CatalogsNIAO producto) {
+		HttpEntity<CatalogsNIAO> body = new HttpEntity<CatalogsNIAO>(producto);
 		
-		ResponseEntity<Producto> response = clienteRest.exchange("http://servicio-productos/crear", HttpMethod.POST, body, Producto.class);
-		Producto productoResponse = response.getBody();
+		ResponseEntity<CatalogsNIAO> response = clienteRest.exchange("http://servicio-productos/crear", HttpMethod.POST, body, CatalogsNIAO.class);
+		CatalogsNIAO productoResponse = response.getBody();
 		return productoResponse;
 	}
 
 	@Override
-	public Producto update(Producto producto, Long id) {
+	public CatalogsNIAO update(CatalogsNIAO producto, Long id) {
 		Map<String, String> pathVariables = new HashMap<String, String>();
 		pathVariables.put("id", id.toString());
 		
-		HttpEntity<Producto> body= new HttpEntity<Producto>(producto);
-		ResponseEntity<Producto> response = clienteRest.exchange("http://servicio-productos/editar/{id}", 
-				HttpMethod.PUT, body, Producto.class, pathVariables);
+		HttpEntity<CatalogsNIAO> body= new HttpEntity<CatalogsNIAO>(producto);
+		ResponseEntity<CatalogsNIAO> response = clienteRest.exchange("http://servicio-productos/editar/{id}", 
+				HttpMethod.PUT, body, CatalogsNIAO.class, pathVariables);
 		
 		return response.getBody();
 	}

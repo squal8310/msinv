@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.formacionbdi.springboot.app.item.models.Item;
-import com.formacionbdi.springboot.app.commons.models.entity.Producto;
+import com.formacionbdi.springboot.app.commons.models.entity.CatalogsNIAO;
 import com.formacionbdi.springboot.app.item.models.service.ItemService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
@@ -56,12 +56,9 @@ public class ItemController {
 
 	public Item metodoAlternativo(Long id, Integer cantidad) {
 		Item item = new Item();
-		Producto producto = new Producto();
+		CatalogsNIAO producto = new CatalogsNIAO();
 		
 		item.setCantidad(cantidad);
-		producto.setId(id);
-		producto.setNombre("Camara Sony");
-		producto.setPrecio(500.00);
 		item.setProducto(producto);
 		return item;
 		
@@ -86,13 +83,13 @@ public class ItemController {
 	
 	@PostMapping("/crear")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Producto crear(@RequestBody Producto producto) {
+	public CatalogsNIAO crear(@RequestBody CatalogsNIAO producto) {
 		return itemService.save(producto);
 	}
 	
 	@PutMapping("/editar/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Producto editar(@RequestBody Producto producto, @PathVariable Long id) {
+	public CatalogsNIAO editar(@RequestBody CatalogsNIAO producto, @PathVariable Long id) {
 		return itemService.update(producto, id);
 	}
 	

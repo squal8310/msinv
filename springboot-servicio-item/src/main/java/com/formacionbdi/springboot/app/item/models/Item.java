@@ -1,25 +1,25 @@
 package com.formacionbdi.springboot.app.item.models;
 
-import com.formacionbdi.springboot.app.commons.models.entity.Producto;
+import com.formacionbdi.springboot.app.commons.models.entity.CatalogsNIAO;
 
 public class Item {
 
-	private Producto producto;
+	private CatalogsNIAO producto;
 	private Integer cantidad;
 
 	public Item() {
 	}
 
-	public Item(Producto producto, Integer cantidad) {
+	public Item(CatalogsNIAO producto, Integer cantidad) {
 		this.producto = producto;
 		this.cantidad = cantidad;
 	}
 
-	public Producto getProducto() {
+	public CatalogsNIAO getProducto() {
 		return producto;
 	}
 
-	public void setProducto(Producto producto) {
+	public void setProducto(CatalogsNIAO producto) {
 		this.producto = producto;
 	}
 
@@ -32,7 +32,7 @@ public class Item {
 	}
 	
 	public Double getTotal() {
-		return producto.getPrecio() * cantidad.doubleValue();
+		return 0.0;
 	}
 
 }
