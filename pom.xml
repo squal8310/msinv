@@ -6,6 +6,7 @@
 	<artifactId>springboot-servicio-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot-servicio-parent</name>
+	<packaging>pom</packaging>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -13,10 +14,9 @@
 	</properties>
 	
 	<modules>
-		<module>./springboot-servicio-commons</module>
 		<module>./springboot-servicio-eureka-server</module>
 		<module>./springboot-servicio-config-server</module>
-		<module>./springboot-servicio-item</module>
+		<module>./springboot-servicio-zuul-server</module>
 	</modules>
 
 </project>
